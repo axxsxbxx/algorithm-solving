@@ -6,3 +6,8 @@ num = int(input())
 
 for i in range(num, -1, -1):
     print(i, end=' ')
+
+'''
+입력 : 8
+출력 : 8 7 6 5 4 3 2 1 0
+'''
