@@ -7,12 +7,11 @@ t = int(input())
 test_case = []
 
 for _ in range(t):
-    test_case.append(input().split())
+    test_case.append(list(map(int, input().split())))
 
 for i, numbers in enumerate(test_case, start=1):
     sum = 0
-    for num in numbers:
-        n = int(num)
+    for n in numbers:
         if n % 2:
             sum += n
     print(f'#{i} {sum}')

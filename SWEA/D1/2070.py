@@ -9,9 +9,7 @@ for _ in range(t):
     test_case.append(input().split())
 
 for i, test in enumerate(test_case, start=1):
-    a , b = test
-    a = int(a)
-    b = int(b)
+    a, b = map(int, test)
 
     if a > b:
         result = '>'

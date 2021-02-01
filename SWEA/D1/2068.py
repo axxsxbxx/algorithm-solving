@@ -10,15 +10,9 @@ test_case = []
 for _ in range(t):
     test_case.append(input())
 
-i = 1
-for numbers in test_case:
-    number_list = numbers.split()
-    number = []
-    for n in number_list:
-        number.append(int(n))
-
-    print(f'#{i} {max(number)}')
-    i += 1
+for i, numbers in enumerate(test_case, start=1):
+    number_list = list(map(int, numbers.split()))
+    print(f'#{i} {max(number_list)}')
 
 # 두 번째 : 비교하면서 찾아가기
 t = int(input())
@@ -27,12 +21,8 @@ test_case = []
 for _ in range(t):
     test_case.append(input())
 
-i = 1
-for numbers in test_case:
-    number_list = numbers.split()
-    number = []
-    for n in number_list:
-        number.append(int(n))    
+for i, numbers in enumerate(test_case, start=1):
+    number = list(map(int, numbers.split()))  
     
     max_num = number[0]
     for n in number:
@@ -40,8 +30,6 @@ for numbers in test_case:
             max_num = n
 
     print(f'#{i} {max_num}')
-    i += 1
-
 
 
 '''
