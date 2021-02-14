@@ -11,6 +11,6 @@
 
 ### 💻 Baekjoon Online Judge
 
-- [Python 기초](BOJ/python 기초/)
+- [Python 기초](BOJ/python basic/)
 - [Bronze](BOJ/Bronze/)
 
