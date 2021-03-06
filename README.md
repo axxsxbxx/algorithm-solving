@@ -11,6 +11,8 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp; 3️⃣ [D3](SWEA/D3/)
 
+&nbsp;&nbsp;&nbsp;&nbsp; 4️⃣ [D4](SWEA/D4/)
+
 ### 💻 Baekjoon Online Judge
 
 &nbsp;&nbsp;&nbsp;&nbsp; 🥉 [Bronze](BOJ/Bronze/)
