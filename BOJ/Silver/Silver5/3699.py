@@ -32,9 +32,11 @@ for _ in range(T):
     cars.sort(key = lambda x:x[2])
     # print(cars)
     time = 0
+    # 각 층에 있는 엘레베이터 위치에 존재하는 컨베이어 벨트 위치 저장하는 배열
     now_pos = [0] * h    
     for car in cars:
         level = car[0]
+        # 찾아야하는 차의 위치(컨베이어 벨트 상에서)
         pos = car[1]
         # 층을 이동하는 시간 계산(올라갔다가 내려가는 시간 둘 다 계산해야해서 2를 곱한다.)
         time += 10 * 2 * level
