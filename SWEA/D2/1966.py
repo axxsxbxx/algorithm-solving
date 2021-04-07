@@ -19,6 +19,33 @@ for t in range(1, T+1):
     ans = ' '.join(list(map(str, result)))
     print('#%d %s' % (t, ans))
 
+##### merge_sort로 풀기
+def merge_sort(a):
+    if len(a) == 1:
+        return a
+    mid = len(a) // 2
+    left = merge_sort(a[:mid])
+    right = merge_sort(a[mid:])
+    temp = []
+    x = y = 0
+    while x < len(left) and y < len(right):
+        if left[x] < right[y]:
+            temp.append(left[x])
+            x += 1
+        else:
+            temp.append(right[y])
+            y += 1
+    temp.extend(left[x:])
+    temp.extend(right[y:])
+    return temp
+
+T = int(input())
+for t in range(1, T+1):
+    N = int(input())
+    arr = list(map(int, input().split()))
+    ans = ' '.join(map(str, merge_sort(arr)))
+    print('#%d %s' % (t, ans))
+
 '''
 [입력]
 1
