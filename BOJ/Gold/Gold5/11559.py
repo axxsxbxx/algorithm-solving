@@ -16,36 +16,81 @@
 총 12개의 줄에 필드의 정보가 주어지며, 각 줄에는 6개의 문자가 있다.
 이때 .은 빈공간이고 .이 아닌것은 각각의 색깔의 뿌요를 나타낸다.
 R은 빨강, G는 초록, B는 파랑, P는 보라, Y는 노랑이다.
-입력으로 주어지는 필드는 뿌요들이 전부 아래로 떨어진 뒤의 상태이다. 즉, 뿌요 아래에 빈 칸이 있는 경우는 없e다.
+입력으로 주어지는 필드는 뿌요들이 전부 아래로 떨어진 뒤의 상태이다. 즉, 뿌요 아래에 빈 칸이 있는 경우는 없다.
 
 - 출력
 현재 주어진 상황에서 몇연쇄가 되는지 출력한다. 하나도 터지지 않는다면 0을 출력한다.
 '''
 from collections import deque
 
-dr = [-1, 1, 0, 0]
+dr = [-1, 1, 0, 0]           
 dc = [0, 0, -1, 1]
+EMPTY = '.'
 
 # BFS를 통해 뿌요 터뜨리는 함수
-def puyo_pop(x, y, color):
+def puyo_pop(x, y):
     queue = deque()
+    queue.append((x, y))
+    puyo = []
+    puyo.append((x, y))
     check = [[0]*6 for _ in range(12)]
-    queue.append([x, y])
+    check[x][y] = 1
     
+    cnt = 1
+    flag = 0
+
+    while queue:
+        r, c = queue.popleft()
+        for i in range(4):
+            nr = r + dr[i]
+            nc = c + dc[i]
+            if 0 <= nr < 12 and 0 <= nc < 6:
+                if fields[nr][nc] == fields[r][c] and check[nr][nc] == 0:
+                    cnt += 1
+                    check[nr][nc] = 1
+                    queue.append((nr, nc))
+                    puyo.append((nr, nc))
+    
+    if cnt >= 4:
+        flag = 1
+        for x, y in puyo:
+            fields[x][y] = EMPTY
+
+    return flag
 
 # 중력의 영향을 받아 아래로 떨어지는 함수
 def puyo_fall():
-    pass
+    for y in range(6):
+        queue = deque()
+        for x in range(11, -1, -1):
+            if fields[x][y] != EMPTY:
+                queue.append(fields[x][y])
+        for x in range(11, -1, -1):
+            if queue:
+                fields[x][y] = queue.popleft()
+            else:
+                fields[x][y] = EMPTY
 
-fields = [input() for _ in range(12)]
-
-
+fields = [list(input()) for _ in range(12)]
+ans = 0
+while True:
+    cnt = 0
+    for i in range(12):
+        for j in range(6):
+            if fields[i][j] != EMPTY:
+                cnt += puyo_pop(i, j)
+    if cnt == 0:
+        print(ans)
+        break
+    else:
+        ans += 1
+    puyo_fall()
 
 '''
 [입력]
 ......
 ......
-......
+......                                                                                                                                    
 ......
 ......
 ......
