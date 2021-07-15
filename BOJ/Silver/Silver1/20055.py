@@ -31,9 +31,43 @@ i번 칸의 내구도는 Ai이다. 위의 그림에서 1번 칸이 있는 위치
 1 ≤ K ≤ 2N
 1 ≤ Ai ≤ 1,000
 '''
+# 원형 큐 이용? -- deque 사용
+# document : https://docs.python.org/3/library/collections.html#collections.deque
+
+from collections import deque
+
+def down_robot():
+    if check[N-1]:
+        check[N-1] = False
+
 N, K = map(int, input().split())
+# 내구도
+conveyor = deque(map(int, input().split()))
+# 로봇 위치 체크
+check = deque([False] * (2*N))
+stage = 0
 
+while conveyor.count(0) < K:
+    # 1. 컨베이어 벨트 회전
+    conveyor.rotate()
+    check.rotate()
+    # 2. 내리는 위치 확인 후 로봇 내리기
+    down_robot()
+    # 3. 로봇 이동하고 올리는 곳에 추가
+    for i in range(N-2, 0, -1):
+        if check[i] and not check[i+1] and conveyor[i+1] > 0:
+            check[i] = False
+            check[i+1] = True
+            conveyor[i+1] -= 1
+    if not check[0] and conveyor[0] > 0:
+        check[0] = True
+        conveyor[0] -= 1
+    # 4. 내리는 위치 확인 후 로봇 내리기
+    down_robot()
+    # 5. 단계 증가
+    stage += 1
 
+print(stage)
 '''
 [입력]
 3 2
