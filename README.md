@@ -19,6 +19,8 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp; 🥈 [Silver](BOJ/Silver/)
 
+&nbsp;&nbsp;&nbsp;&nbsp; 🥇 [Gold](BOJ/Gold/)
+
 ### 💻 Programmers
 
 ### 💻 Codility
