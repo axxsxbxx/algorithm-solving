@@ -93,63 +93,6 @@ k번째 수열을 나타내는 N개의 수를 출력하거나, 몇 번째 수열
 #     k = question[1:]
 #     second(nums, 0, k)
 
-
-import sys
-input = sys.stdin.readline
-
-N = int(input())
-question = list(map(int, input().split()))
-# 제일 앞 자리수가 같은 순열의 개수
-# f = [0, 1, 2, 6, 24 ... ]
-f = [0, 1]
-for i in range(2, N + 1):
-    f.append(f[i - 1] * i)
-
-# k번째 순열 구하기
-if question[0] == 1:
-    k = question[1] - 1
-    num = N - 1
-    s = [i for i in range(1, N + 1)]
-    result = []
-    for _ in range(N - 1):
-        result.append(s[k // f[num]])
-        del s[k // f[num]]
-        k %= f[num]
-        num -= 1
-    result.append(s[0])
-    print(*result)
-
-
-# n = int(input())
-# s = list(map(int, input().split()))
-# f = [0, 1]
-# for i in range(2, 21):
-#     f.append(f[i - 1] * i)
-# if s[0] == 1:
-#     k = s[1] - 1
-#     num = n - 1
-#     s = [i for i in range(1, n + 1)]
-#     result = []
-#     for _ in range(n - 1):
-#         result.append(s[k // f[num]])
-#         del s[k // f[num]]
-#         k %= f[num]
-#         num -= 1
-#     result.append(s[0])
-#     print(*result)
-# else:
-#     result = 0
-#     s = s[1:]
-#     num = n - 1
-#     for i in range(n):
-#         cnt = 0
-#         for j in range(i, n):
-#             if i == j: continue
-#             if s[i] > s[j]: cnt += 1
-#         for k in range(cnt):
-#             result += f[num]
-#         num -= 1
-#     print(result + 1)
 '''
 [입력]
 4
