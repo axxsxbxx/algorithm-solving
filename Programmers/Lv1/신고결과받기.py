@@ -5,7 +5,6 @@ def solution(id_list, report, k):
     
     report_cnt = defaultdict(int)
     report_person = defaultdict(list)
-    result_mail = defaultdict(int)
     
     real_report = set(report)
     
